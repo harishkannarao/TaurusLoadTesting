@@ -1,0 +1,4 @@
+settings:
+  env:
+    BLAZEDEMO_BASE_URL: http://blazedemo.com
+    INPUT_CSV_FILE: /TaurusLoadTesting/data/development.csv

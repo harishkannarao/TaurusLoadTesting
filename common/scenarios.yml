@@ -1,0 +1,63 @@
+reporting:
+- module: console
+
+provisioning: local
+
+settings:
+  artifacts-dir: /TaurusLoadTesting/build/bzt/%Y-%m-%d_%H-%M-%S.%f
+  default-executor: jmeter
+
+services:
+- module: shellexec
+  post-process:
+  - awk -F',' -v OFS=',' '$7 = $7 FS "failureMessage"' ${TAURUS_ARTIFACTS_DIR}/kpi.jtl > ${TAURUS_ARTIFACTS_DIR}/jmeter_stats.jtl
+  - find ~/.bzt -type f -name "jmeter" -exec ln -s {} . ';'
+  - ./jmeter -g ${TAURUS_ARTIFACTS_DIR}/jmeter_stats.jtl -o ${TAURUS_ARTIFACTS_DIR}/jmeterHtmlReports
+
+scenarios:
+  blazedemo-journey:
+    data-sources:
+      - path: ${INPUT_CSV_FILE}
+        delimiter: ','
+        quoted: true
+        loop: true
+        variable-names: fromPort,toPort,flightIndex
+    requests:
+    - url: ${BLAZEDEMO_BASE_URL}/
+      method: GET
+      label: home
+    - url: ${BLAZEDEMO_BASE_URL}/reserve.php
+      method: POST
+      label: reserve
+      body: "fromPort=${fromPort}&toPort=${toPort}"
+      headers:
+        Content-Type: application/x-www-form-urlencoded
+      extract-regexp:
+        flightId:
+          regexp: <input.*value="(.*)".*name="flight">
+          default: NOT_FOUND
+          match-no: ${flightIndex}
+          template: 1  # which capture group to take
+          subject: body
+          scope: all
+        price:
+          regexp: <input.*value="(.*)".*name="price">
+          default: NOT_FOUND
+          match-no: ${flightIndex}
+          template: 1  # which capture group to take
+          subject: body
+          scope: all
+        flightName:
+          regexp: <input.*value="(.*)".*name="airline">
+          default: NOT_FOUND
+          match-no: ${flightIndex}
+          template: 1  # which capture group to take
+          subject: body
+          scope: all
+    - url: ${BLAZEDEMO_BASE_URL}/purchase.php
+      method: POST
+      label: purchase
+      body: "flight=${flightId}&price=${price}&airline=${flightName}&fromPort=${fromPort}&toPort=${toPort}"
+      headers:
+        Content-Type: application/x-www-form-urlencoded
+    

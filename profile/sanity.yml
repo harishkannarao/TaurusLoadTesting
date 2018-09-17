@@ -1,0 +1,9 @@
+execution:
+- concurrency: 5
+  hold-for: 20s
+  ramp-up: 10s
+  write-xml-jtl: full # enable full logging of http request and response details as tracel.jtl file. Useful for debugging in sanity, but not recommended for soak or load level testing
+  scenario: blazedemo-journey
+
+settings:
+  check-interval: 1s
