@@ -18,6 +18,6 @@ From individual nodes, you can collect the jmeter_stats.jtl file into a local di
 
 Let the files be placed under `build` directory as `jmeter_stats_node1.jtl`, `jmeter_stats_node2.jtl` and `jmeter_status_node3.jtl`. The the following commands allows us to generate a unified html report by combining all three jtl files.
 
-    awk 'FNR==1 && NR!=1{next;}{print}' build/jmeter_stats*.jtl > build/jmeter_status_full.jtl
+    awk 'FNR==1 && NR!=1{next;}{print}' build/jmeter_stats*.jtl > build/jmeter_stats_full.jtl
 
-    /opt/apache-jmeter/bin/jmeter -g build/jmeter_status_full.jtl -o build/jmeterFullHtmlReport
+    /opt/apache-jmeter/bin/jmeter -g build/jmeter_stats_full.jtl -o build/jmeterFullHtmlReport
