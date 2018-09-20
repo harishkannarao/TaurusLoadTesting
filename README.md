@@ -1,6 +1,9 @@
 # Taurus Load Testing
 This repository is to load testing http endpoint using blazemeter taurus using Apache JMeter executor. It also demonstration auto generation of html reports in local machine using JMeter without using the blazemeter online reporting services. Also it explains steps to generate a unified html report if the load test is run from multiple machines to simulate distributed load testing.
 
+### Travis CI Build status
+[![Build Status](https://travis-ci.org/harishkannarao/TaurusLoadTesting.svg?branch=master)](https://travis-ci.org/harishkannarao/TaurusLoadTesting)
+
 ### Why is this sample repository created
 I had generate offline html reports after test completion in Taurus without using Blazemeter's online service. Hence created this sample repository to demonstrate the auto html report generation using Taurus.
 
