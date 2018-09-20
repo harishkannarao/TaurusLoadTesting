@@ -7,7 +7,6 @@ I had generate offline html reports after test completion in Taurus without usin
 More on this is explained in my blog at [Blazemeter Taurus load testing and offline jmeter html report](https://blogs.harishkannarao.com/2018/09/blazemeter-taurus-load-testing-and.html)
 
 ### Required Software and Tools
-* Java Version: Oracle Java 1.8.0_31 (Execute **_java -version_** in command line after installation)
 * Docker Version: Docker version 17.03.1-ce, build c6d412e (Execute **_docker --version_** in command line after installation)
 
 ### To run load tests
