@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+before_script:
+  - docker --version
+
+script:
+  - docker run --rm -v `pwd`:/TaurusLoadTesting blazemeter/taurus /TaurusLoadTesting/profile/sanity.yml /TaurusLoadTesting/common/scenarios.yml /TaurusLoadTesting/variable/development.yml
