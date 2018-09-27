@@ -10,10 +10,12 @@ I had generate offline html reports after test completion in Taurus without usin
 More on this is explained in my blog at [Blazemeter Taurus load testing and offline jmeter html report](https://blogs.harishkannarao.com/2018/09/blazemeter-taurus-load-testing-and.html)
 
 ### Required Software and Tools
-* Docker Version: Docker version 17.03.1-ce, build c6d412e (Execute **_docker --version_** in command line after installation)
+* Docker Version: Docker version 17.03.1-ce (Execute **_docker --version_** in command line after installation)
+* Docker Compose Version: docker-compose version 1.22.0 (Execute **_docker-compose --version_** in command line after installation)
 
 ### To run load tests
 The following command runs the load tests with sanity profile targetting the development environment. The following command can be easily parameterised to run with different load profile against a specified environment.
+
 **Windows/Linux/Unix/Mac OS Users using docker-compose**
 
     docker-compose up
