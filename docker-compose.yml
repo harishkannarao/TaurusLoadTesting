@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  blazemeter-taurus-load-test:
+    container_name: blazemeter-taurus-load-test
+    image: "blazemeter/taurus"
+    command: /TaurusLoadTesting/profile/sanity.yml /TaurusLoadTesting/common/scenarios.yml /TaurusLoadTesting/variable/development.yml
+    volumes:
+      - .:/TaurusLoadTesting

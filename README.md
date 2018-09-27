@@ -14,6 +14,13 @@ More on this is explained in my blog at [Blazemeter Taurus load testing and offl
 
 ### To run load tests
 The following command runs the load tests with sanity profile targetting the development environment. The following command can be easily parameterised to run with different load profile against a specified environment.
+**Windows/Linux/Unix/Mac OS Users using docker-compose**
+
+    docker-compose up
+
+or 
+
+**Linux/Unix/Mac OS Users using docker**
 
     docker run --rm -v `pwd`:/TaurusLoadTesting blazemeter/taurus /TaurusLoadTesting/profile/sanity.yml /TaurusLoadTesting/common/scenarios.yml /TaurusLoadTesting/variable/development.yml
 
