@@ -10,7 +10,9 @@ settings:
 services:
 - module: shellexec
   post-process:
-  - awk -F',' -v OFS=',' '$7 = $7 FS "failureMessage"' ${TAURUS_ARTIFACTS_DIR}/kpi.jtl > ${TAURUS_ARTIFACTS_DIR}/jmeter_stats.jtl
+  - ls ${TAURUS_ARTIFACTS_DIR}/kpi*.jtl | xargs -n 1 head -n 1 | uniq >> ${TAURUS_ARTIFACTS_DIR}/full_kpi.jtl
+  - ls ${TAURUS_ARTIFACTS_DIR}/kpi*.jtl | xargs -n 1 tail -n+2 >> ${TAURUS_ARTIFACTS_DIR}/full_kpi.jtl
+  - awk -F',' -v OFS=',' '$7 = $7 FS "failureMessage"' ${TAURUS_ARTIFACTS_DIR}/full_kpi.jtl > ${TAURUS_ARTIFACTS_DIR}/jmeter_stats.jtl
   - find ~/.bzt -type f -name "jmeter" -exec ln -s {} . ';'
   - ./jmeter -g ${TAURUS_ARTIFACTS_DIR}/jmeter_stats.jtl -o ${TAURUS_ARTIFACTS_DIR}/jmeterHtmlReports
 
