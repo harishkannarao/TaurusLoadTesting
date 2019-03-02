@@ -5,5 +5,9 @@ execution:
   write-xml-jtl: full # enable full logging of http request and response details as trace.jtl file. Useful for debugging in sanity, but not recommended for soak or load level testing
   scenario: blazedemo-journey
 
+modules:
+  console:
+    disable: true
+
 settings:
   check-interval: 1s
